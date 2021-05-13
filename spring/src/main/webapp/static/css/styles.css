@@ -1,0 +1,106 @@
+div.wpcf7 {
+    margin: 0;
+    padding: 0;
+}
+
+div.wpcf7-response-output {
+    margin: 2em 0.5em 1em;
+    padding: 0.2em 1em;
+}
+
+div.wpcf7-mail-sent-ok {
+    border: 2px solid #398f14;
+}
+
+div.wpcf7-mail-sent-ng {
+    border: 2px solid #ff0000;
+}
+
+div.wpcf7-spam-blocked {
+    border: 2px solid #ffa500;
+}
+
+div.wpcf7-validation-errors {
+    border: 2px solid #f7e700;
+}
+
+span.wpcf7-form-control-wrap {
+    position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #ff0000;
+    font-size: 10pt;
+    width: 280px;
+    padding: 2px;
+}
+
+span.wpcf7-not-valid-tip-no-ajax {
+    color: #f00;
+    font-size: 10pt;
+    display: block;
+}
+
+span.wpcf7-list-item {
+    margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+    display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+    border: none;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+div.wpcf7 .placeheld {
+    color: #888;
+}
+
+pagination > li:first-child > a, .pagination > li:first-child > span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+
+    box-sizing: border-box;
+}
+input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.mgl-255 {
+    margin-left: 255px;
+}
+td {
+    margin-top: 5px;
+    font-size: 16px;
+}
+.info-user {
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.list-info-user {
+    font-size: 13px;
+    color: #333 !important;
+    font-weight: bold;
+}
+.list-info-user:hover {
+    color: #0d72c7 !important;
+}
+.rslides1 {
+    max-height: 325px !important;
+}

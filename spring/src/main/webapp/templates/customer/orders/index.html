@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment = "content">
+		<div class="post-8939 page type-page status-publish hentry entry">
+		    <h1 class="entry-title">Your Orders</h1>
+		    <div class="entry-content">
+		        <table id="gsc" width="100%" border="1" class="shop-cart-table" cellspacing="0" cellpadding="5">
+		            <thead class="tr-heading">
+		                <tr>
+		                    <th>Order Id</th>
+		                    <th>Total Price</th>
+		                    <th>Coupon</th>
+		                    <th>Final Price</th>
+		                    <th>State</th>
+		                    <th>Details</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr th:each = "order : ${orders}">
+		                    <td align="center" th:text = "${order.id}"></td>
+		                    <td align="center">
+		                        <span th:text ="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                    </td>
+		                    <td align="center">
+		                        <span th:text = "${order.couponCode} ?: 'Not used or deleted'"></span>
+		                    </td>
+		                    <td align="center">
+		                        <span th:text = "${#numbers.formatDecimal(order.finalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                    </td>
+		                    <td th:if = "${order.state.isPresent()}" align="center">
+		                    	<span th:if = "${order.state.get()}">Accepted</span>
+		                    	<span th:unless = "${order.state.get()}">Rejected</span>
+		                    </td>
+		                    <td th:unless = "${order.state.isPresent()}" align="center">
+		                    	<span>Pending</span>
+		                    </td>
+		                    <td align="center">
+		                        <a th:href = "@{/customer/orders/show(id=${order.id})}" class="remove-product">View Order</a>
+		                    </td>
+		                </tr>
+		            </tbody>
+		        </table>
+		    </div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+	<script type = "text/javascript" th:src = @{/static/js/submitParent.js} defer></script>
+</head>
+<body>
+	<section layout:fragment="content" th:with = "category = ${categoryIndex.category},products = ${categoryIndex.products}">
+		
+		<div class="breadcrumb">
+			<div class="wrap">
+				<a th:href="@{/home}">Home</a>
+				<span class="label">&gt;</span>
+				<a href="#">Category</a>
+				<span class="label"> &gt; </span>
+				<span th:text = "${category.name}"></span>
+			</div>
+		</div>
+		
+		<div id = "inner">
+			<div class = "content-sidebar-wrap">
+				<div id = "content" class = "hfeed">
+				
+					<h1 class="archive-heading">
+						<!--  dan den mot category, title la name cua category-->
+			
+						<a th:href="#" th:title="${category.name}" th:text = "${category.name}"></a>
+					</h1>
+					
+					<th:block th:each = "product : ${products}">
+						<div class="sp">
+		                	<div class="post-135951 products type-products status-publish has-post-thumbnail hentry entry">
+		                    	<div class="image-sp">
+		                        	<a th:href="@{/shop/product(id=${product.id})}">
+		                            	<div class="imghome" th:style="'background:url('+@{/static/images/products/{img}(img=${product.image})}+'); no-repeat center center;'"></div>
+		                        	</a>
+		                		</div>
+		                        <h3>
+		                        	<a href="@{/shop/product(id=${product.id})}" th:text = "${product.name}"></a>
+		                        </h3>
+		                        <div class="show-gia">
+		                            <p class="price">
+		                            	<span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                            </p>
+		                        </div>
+		                        <div id="buy-product" class="buy-product">
+		                        	<form method="post" th:action="@{/cart/add(productId=${product.id})}">
+		                        		<a type = "submit" class="addtocart linkWrappedByForm" title="Add Cart" href="javascript:{}" rel="135951">
+		                        			Add Cart
+		                        		</a>
+		                        	</form>
+		                        </div>
+		                        <div class="entry-content"></div>
+							</div>
+						</div>
+					</th:block>
+					
+				</div>
+			</div>
+		</div>
+		
+		
+		
+	</section>
+</body>

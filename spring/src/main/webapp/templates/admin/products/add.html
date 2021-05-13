@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+   <section layout:fragment = "content">
+      <div class="right_col" role="main" style="min-height: 656px;">
+         <div class="">
+            <div class="page-title">
+               <div class="title_left">
+                  <h3>Add New Product</h3>
+               </div>
+               <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+                  <a th:href = "@{/admin/products/index}" class="btn btn-round btn-success" style="float: right;">List All Products</a>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="x_panel">
+                     <div class="x_title">
+                        <h2 th:inline = "text">Message: [[${msg} ?: 'No action being comitted']]</h2>
+                        <div class="clearfix"></div>
+                     </div>
+                     <div class="x_content">
+                        <div class="col-xs-12">
+                           <form method = "POST" enctype="multipart/form-data" th:action = "@{/admin/products/add}" th:object = "${form}">
+                              <table class="table">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <label for = "name" class="formLeft magin-left-30">Name:<span class="req">(*)</span></label>
+                                       </td>
+                                       <td>
+                                          <input type = "text" name = "name" id = "name" class="form-control col-md-7 col-xs-12" placeholder="Product Name" 
+                                             th:value = "${form.name} ?: ''"  required>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <label for = "price" class="formLeft magin-left-30">Price:<span class="req">(*)</span></label>
+                                       </td>
+                                       <td>
+                                          <input type = "number" name = "price" id = "price" class="form-control col-md-7 col-xs-12" placeholder="Product Price"
+                                             th:min = "${productPriceMinValue}"
+                                             th:max = "${productPriceMaxValue}"
+                                             th:step = "${productPriceStepValue}"
+                                             th:value = "${form.price} ?: ''" required>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <label for = "description" class="formLeft magin-left-30">Description: </label>
+                                       </td>
+                                       <td>
+                                          <input type = "text" name = "description" id="description" class="form-control col-md-7 col-xs-12" placeholder="Product Description"
+                                             th:value = "${form.description} ?: ''">
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <label for = "categoryId" class="formLeft magin-left-30">Category:<span class="req">(*)</span></label>
+                                       </td>
+                                       <td>
+                                          <div class="form-group">
+                                             <select name = "categoryId" class="form-control" required>
+                                                <option th:each = "category : ${categories}" 
+                                                   th:value = "${category.id}"  
+                                                   th:text = "${category.name}" 
+                                                   th:selected = "${form.categoryId != null and form.categoryId.isPresent() and form.categoryId.get() == category.id}">
+                                                </option>
+                                             </select>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <label for = "image" class="formLeft magin-left-30">Image: </label>
+                                       </td>
+                                       <td>
+                                          <input type = "file" name = "image" id = "image" class="image" accept = "image/*">
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                       </td>
+                                       <td>
+                                          <button type="submit" class="btn btn-info ">Add New</button>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</body>

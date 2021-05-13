@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+	<section layout:fragment = "content">
+		<div class="right_col" role="main" style="min-height: 656px;" 
+		   th:with = "order = ${holder.central}, account = ${holder.account}, coupon = ${holder.coupon}, lineHolders = ${holder.orderLineHolders}">
+		   <div class="">
+		       <div class="page-title" id="load">
+		           <div class="title_left">
+		               <h3>
+		                   Order ID: 
+		                   <span class="order-number" th:text = "${order.id}"></span>
+		               </h3>
+		           </div>
+		           <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+		               <a th:href = "@{/admin/orders/index}">List All Orders</a>
+		           </div>
+		       </div>
+		       <div class="clearfix"></div>
+		       <div class="row">
+		           <div class="col-md-12 col-sm-12 col-xs-12">
+		               <div class="x_panel">
+		                   <div class="order-information">
+		                       <div class="info">
+		                           <p th:inline = "text">
+		                               <span> Total Price: </span> [[${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}]]
+		                           </p>
+		                           <p th:inline = "text">
+		                               <span> Coupon: </span> [[${coupon?.code} ?: '--']]
+		                           </p>
+		                           <p th:inline = "text">
+		                               <span> Reduction: </span> [[${coupon?.effect} ?: '--']]%
+		                           </p>
+		                           <p th:inline = "text">
+		                               <span> Final Price: </span> [[${#numbers.formatDecimal(order.finalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}]]
+		                           </p>
+		                           <p th:unless = "${order.state.isPresent()}">
+		                               <span> State: </span> Pending
+		                           </p>
+		                           <p th:if = "${order.state.isPresent()}">
+		                              <span> State: </span> [[${order.state.get()} ? 'Accepted' : 'Rejected']]
+		                           </p>
+		                           <div class="info-action">
+		                               <div class="product-checking">
+		                                   <span> Actions: </span>
+		                                   <div th:unless = "${order.state.isPresent()}">
+		                                       <a th:href = "@{/admin/orders/change(id=${order.id},state=true)}">
+		                                       <button id="accept-btn" type="button"> Accept </button>
+		                                       </a>
+		                                       <a th:href = "@{/admin/orders/change(id=${order.id},state=false)}">
+		                                       <button id="reject-btn" type="button"> Reject </button>
+		                                       </a>
+		                                   </div>
+		                                   <div th:if = "${order.state.isPresent()}">
+		                                       <a th:href = "@{/admin/orders/delete(id=${order.id})}" class="verify_action">
+		                                       <i class="fa fa-trash-o" id="icon_red"></i>
+		                                       </a>
+		                                   </div>
+		                               </div>
+		                           </div>
+		                       </div>
+		                   </div>
+		                   <div class="x_content">
+		                       <div class="row">
+		                           <div class="col-sm-12">
+		                               <form method="get" action="" class="list_filter form">
+		                                   <table class="table table-bordered">
+		                                       <thead>
+		                                           <tr>
+		                                               <th>ID</th>
+		                                               <th>Image</th>
+		                                               <th>Name</th>
+		                                               <th>Category</th>
+		                                               <th>Quantity</th>
+		                                               <th>Price</th>
+		                                               <th>Total Price</th>
+		                                           </tr>
+		                                       </thead>
+		                                       <tbody>
+		                                           <tr th:each = "lineHolder : ${lineHolders}" 
+		                                             th:with = "line = ${lineHolder.central}, productHolder = ${lineHolder.productHolder}">
+		                                               <td class="center" th:text = "${productHolder?.central?.id} ?: '--'"></td>
+		                                               <td>
+		                                                   <img 
+		                                                      th:src="@{/static/images/products/{img}(img=(${productHolder?.central?.image}?:'placeholder.jpg'))}" 
+		                                                      width ="80" height = "80" alt="proudct-img">
+		                                               </td>
+		                                               <td th:text = "${productHolder?.central?.name} ?: '--'"></td>
+		                                               <td th:text = "${productHolder?.category?.name} ?: '--'"></td>
+		                                               <td th:text = "${line.quantity}"></td>
+		                                               <td th:if = "${productHolder}" th:inline = "text">
+		                                                  [[${#numbers.formatDecimal(productHolder.central.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}]]
+		                                               </td>
+		                                               <td th:unless = "${productHolder}">--</td>
+		                                               <td th:text = "${#numbers.formatDecimal(line.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+		                                           </tr>
+		                                       </tbody>
+		                                   </table>
+		                               </form>
+		                           </div>
+		                       </div>
+		                   </div>
+		               </div>
+		           </div>
+		       </div>
+		   </div>
+		</div>
+	</section>
+</body>

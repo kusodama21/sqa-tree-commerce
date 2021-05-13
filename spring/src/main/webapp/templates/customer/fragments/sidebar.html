@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<section layout:fragment = "sidebar" th:remove = "tag">
+		<div id="caia-product-jquery-2" class="widget caia-product-jquery-widget">
+		   <div class="widget-wrap">
+		      <h4 class="widget-title widgettitle">Selling products</h4>
+		      <div class="main-posts">
+		         <div class="">
+		            <ul>
+		               <!-- For each with product -->
+		               <li class="post-164177 products type-products status-publish has-post-thumbnail entry"
+		                  th:each = "product : ${sellingProducts}">
+		                  <a th:href = "@{/shop/products/show(id=${product.id})}" 
+		                     th:title = "${product.name}" class="alignleft">
+		                     <img width="150" height="150" 
+		                        th:src = "@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}" 
+		                        class="attachment-thumbnail" 
+		                        th:alt = "${product.name}" 
+		                        th:title = "${product.name}">
+		                  </a>
+		                  <h3 class="widget-item-title">
+		                     <a th:href = "@{/shop/products/show(id=${product.id})}" 
+		                        th:title = "${product.name}"
+		                        th:text = "${product.name}">
+		                     </a>
+		                  </h3>
+		                  <div class="show-gia1">
+		                     <span class="price">
+		                        <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                     </span>
+		                  </div>
+		                  <div class="clear"></div>
+		               </li>
+		               <!-- End for each with product -->
+		            </ul>
+		         </div>
+		      </div>
+		   </div>
+		</div>
+	</section>
+</body>

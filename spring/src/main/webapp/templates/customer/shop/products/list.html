@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 class="archive-heading" th:text = "${heading}"></h1>
+		<div class="sp" th:each = "product : ${products}">
+			<div class="post-135951 products type-products status-publish has-post-thumbnail hentry entry">
+				<div class="image-sp">
+					<a th:href = "@{/shop/products/show(id=${product.id})}">
+						<div class="imghome" 
+							th:style="'background:url('+@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}+'); no-repeat center center;'"></div>
+					</a>
+				</div>
+				<h3>
+					<a th:href = "@{/shop/products/show(id=${product.id})}" th:title = "${product.name}" th:text = "${product.name}"></a>
+				</h3>
+				<div class="show-gia">
+					<p class="price">
+						<span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+					</p>
+				</div>
+				<div id="buy-product" class="buy-product">
+					<a type = "submit" class="addtocart" title = "Add to cart" 
+						th:href = "@{/customer/cart/add(productId=${product.id})}">Add Cart</a>
+				</div>
+				<div class="entry-content"></div>
+			</div>
+		</div>
+	</div>
+</body>

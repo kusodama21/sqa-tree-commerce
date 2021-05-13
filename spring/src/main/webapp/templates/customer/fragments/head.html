@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head layout:fragment = "head" th:remove = "tag">
+
+	<!-- Các thông tin chung -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SQA Garden</title>
+	<link th:href="@{/static/images/icon/favicon-cay-canh.png}" rel="shortcut icon">
+
+	<!-- Ở đây đặt các css dùng cho mọi trang, css riêng sẽ được đặt ở trang thừa kế layout -->
+	<link rel='stylesheet' id='caia-css' th:href='@{/static/css/style.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='shop-cart-css' th:href='@{/static/css/gsc-style.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css' th:href='@{/static/css/styles.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='responsive-lightbox-fancybox-css' th:href='@{/static/css/jquery.fancybox-1.3.4.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' th:href='@{/static/css/font-awesome.css}' type='text/css' media='screen' />
+    <link rel='stylesheet' id='responsiveslides-css' th:href='@{/static/css/responsiveslides.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-postratings-css' th:href='@{/static/css/postratings-css.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='decent-comments-widget-css' th:href='@{/static/css/decent-comments-widget.css}' type='text/css' media='all' />
+    <link rel='stylesheet' id='decent-comments-widget-css' th:href='@{/static/css/fix_menu.css}' type='text/css' media='all' />
+    
+    <!-- Ở đây đặt các js dùng cho mọi trang, js riêng sẽ được đặt ở trang thừa kế layout -->
+    <!-- Được load đầu tiên, những tệp js cần load thêm defer-->
+	<!-- <script type='text/javascript' th:src='@{/static/js/jquery.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/jquery-migrate.min.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/jquery.fancybox-1.3.4.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/responsiveslides.min.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/homeslide.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/jCarouselLite2.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/connected.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/jcarousel.js}'></script>
+    <script type='text/javascript' th:src='@{/static/js/slick.js}'></script> -->
+    
+    <style>
+    	.at4-share-title {
+    		font-style:italic; 
+     		font-size:10px; 
+    		color: #bbb;
+         }
+         .atss { 
+         	top:60%!important;
+         }
+         @media screen and (max-width:970px) {
+         	.atss {
+         		top: auto !important; 
+          		width: 100% !important; 
+                bottom: 0 !important;
+             }
+         }
+	</style>
+     
+	<script type="text/javascript">
+     	jQuery(document).ready(function($) {  
+	     	$(function() {
+	     		$(".rslides").responsiveSlides({
+	            	auto: true,             // Boolean: Animate automatically, true or false	            
+	                speed: 500,            // Integer: Speed of the transition, in milliseconds            
+	                timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+	                pager: false,           // Boolean: Show pager, true or false	            
+	                nav: false,             // Boolean: Show navigation, true or false	            
+	                random: false,          // Boolean: Randomize the order of the slides, true or false	            
+	                pause: false,           // Boolean: Pause on hover, true or false	            
+	                pauseControls: false,    // Boolean: Pause when hovering controls, true or false	            
+	                prevText: "Prev",   // String: Text for the "previous" button	            
+	                nextText: "Next",       // String: Text for the "next" button	            
+	                maxwidth: "1000",           // Integer: Max-width of the slideshow, in pixels            
+	                navContainer: "",       // Selector: Where controls should be appended to, default is after the 'ul'            
+	                manualControls: "",     // Selector: Declare custom pager navigation            
+	                namespace: "rslides",   // String: Change the default namespace used            
+	                before: function(){},   // Function: Before callback          
+	                after: function(){}     // Function: After callback
+				});
+			});
+		});
+	</script>
+	
+	<script>
+		jQuery(document).ready(function($) {
+			$("#button-product").mouseover(function(){
+				$("#menu-js .widget_nav_menu").toggle('slow');          
+			});
+		});
+	</script>
+    
+</head>

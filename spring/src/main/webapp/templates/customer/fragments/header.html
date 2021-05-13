@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<section layout:fragment = "header" th:remove = "tag">
+	
+		<!-- div  content-before-header -->
+		<div id="content-before-header">
+		   <div class="wrap">
+		      <div id="nav_menu-8" class="widget widget_nav_menu">
+		         <div class="widget-wrap">
+		            <div class="menu-main-menu-container">
+		               <ul th:unless = "${accountHolder}" id="menu-main-menu" class="menu">
+		                  <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16">
+		                     <a th:href = "@{/account/login}">Login</a>
+		                  </li>
+		                  <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16">
+		                     <a th:href = "@{/account/register}">Register</a>
+		                  </li>
+		               </ul>
+		               <ul th:if = "${accountHolder}" id="menu-main-menu" class="menu">
+		                  <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16">
+		                     <span th:text = "${accountHolder.central.username}"></span>
+		                  </li>
+		                  <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16">
+		                     <a th:href = "@{/account/logout}">Logout</a>
+		                  </li>
+		               </ul>
+		            </div>
+		         </div>
+		      </div>
+		   </div>
+		</div>
+		<!--  End content-before-header -->
+	
+		<!--  div header -->
+		<div id="header">
+		   <div class="wrap">
+		       <div id="title-area"></div>
+		       <div class="widget-area header-widget-area">
+		           <div id="code_widget-2" class="code-widget_search_form widget caia_code_widget">
+		               <div class="widget-wrap">
+		                   <form role="search" method="get" id="searchform" th:action = "@{/shop/products/search}">
+		                       <div class="search-list-category">
+		                           <input type="text" value="" name="name" id="s" placeholder="Search">
+		                           <input type="submit" id="searchsubmit">
+		                       </div>
+		                   </form>
+		               </div>
+		           </div>
+		           <div id="shop-cart-4" class="widget gsc-shop-cart">
+		               <div class="widget-wrap">
+		                   <div class="cart-wrap">
+		                       <!--hoangnm edit-->
+		                       <a th:href = "@{/customer/cart/index}" title="View Cart">
+		                           <div style="width:41px;height:41px;display:inline-block;float:right"></div>
+		                           <p id="total-incart-price">
+		                           </p>
+		                           <span id="num-incart-products">
+		                           (
+		                           <span class="num-products" th:text = "${accountHolder?.numItemsInCart} ?: 'N'"></span>
+		                           <span class="product-called"> sp</span> 
+		                           )
+		                           </span>
+		                           <span class="checkout">Cart</span>
+		                       </a>
+		                   </div>
+		                   <!-- end .wrap -->
+		               </div>
+		           </div>
+		           <div id="text-12" class="widget widget_text">
+		               <div class="widget-wrap">
+		                   <div class="textwidget">
+		                       <p id="button-product">CATEGORIES</p>
+		                   </div>
+		               </div>
+		           </div>
+		       </div>
+		       <div class="top_menu">
+		           <ul class="menus">
+		               <a th:href = "@{/home}">
+		                   <li class="level-1">Home</li>
+		               </a>
+		               <a th:href = "@{/shop/products/index}">
+		                   <li>Products</li>
+		               </a>
+		               <a th:href = "@{/aboutus}">
+		                   <li>About us</li>
+		               </a>
+		               <a th:href = "@{/contact}">
+		                   <li>Contact</li>
+		               </a>
+		           </ul>
+		       </div>
+		   </div>
+		</div>
+		<!-- End div header -->
+		
+		<!-- div content-slider -->
+		<div id="content-slider">
+		   <div class="wrap">
+		      <div id="nav_menu-9" class="widget widget_nav_menu">
+		         <div class="widget-wrap">
+		            <div class="menu-san-pham-duoc-quan-tam-container">
+		               <ul id="menu-san-pham-duoc-quan-tam" class="menu">
+		                  <!-- For each with category -->
+		                  <li id="menu-item-180027" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-180027"
+		                     th:each = "category : ${categories}">
+		                     <a th:href = "@{/shop/categories/show(id=${category.id})}" th:text = "${category.name}" style="background-image:none;"></a>
+		                  </li>
+		                  <!-- End for each with category -->
+		               </ul>
+		            </div>
+		         </div>
+		      </div>
+		      <div id="simpleresponsiveslider_widget-2" class="widget widget_simpleresponsiveslider_widget">
+		         <div class="widget-wrap">
+		            <div class="rslides_container">
+		               <ul class="rslides rslides1" style="max-width: 1000px;">
+		                  <li id="rslides1_s0" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out 0s;">
+		                     <img th:src = "@{/static/images/banner/foody-1.jpg}" alt="slider">
+		                  </li>
+		                  <li id="rslides1_s1" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; transition: opacity 500ms ease-in-out 0s;" class="">
+		                     <img th:src = "@{/static/images/banner/foody-2.jpg}" alt="slider">
+		                  </li>
+		                  <li id="rslides1_s2" style="float: left; position: relative; opacity: 1; z-index: 2; display: list-item; transition: opacity 500ms ease-in-out 0s;" class="rslides1_on">
+		                     <img th:src="@{/static/images/banner/foody-3.jpg}" alt="slider">
+		                  </li>
+		               </ul>
+		            </div>
+		         </div>
+		      </div>
+		      <div id="text-14" class="widget widget_text">
+		         <div class="widget-wrap">
+		            <div class="textwidget">
+		               <img th:src= "@{/static/images/morinaga_1.jpg}">
+		            </div>
+		         </div>
+		      </div>
+		   </div>
+		</div>
+		<!-- end div content-slider -->
+		
+	</section>
+</body>

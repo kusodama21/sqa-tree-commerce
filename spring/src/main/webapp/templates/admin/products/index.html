@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="right_col" role="main" style="min-height: 655px;">
+			<div class="">
+				<div class="page-title">
+					<div class="title_left">
+						<h3>Product Management</h3>
+					</div>
+					<div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+						<a th:href="@{/admin/products/add}"
+							class="btn btn-round btn-primary" style="float: right;">Add
+							New </a>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2 th:inline="text">Message: [[${msg} ?: 'No actions being comitted']]</h2>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<div class="row">
+									<div class="col-sm-12">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th style="width: 3%">ID</th>
+													<th>Image</th>
+													<th>Name</th>
+													<th>Category</th>
+													<th>Price</th>
+													<th>Description</th>
+													<th>Edit</th>
+													<th>Delete</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="holder : ${productHolders}"
+													th:with="product = ${holder.central}, category = ${holder.category}">
+													<td class="center" style="width: 3%" th:text = ${product.id}></td>
+													<td class="center"><img
+														th:src="@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}"
+														class="img-thumbnail" alt="Cinque Terre" width="80"
+														height="80"></td>
+													<td th:text="${product.name}"></td>
+													<td th:text="${category?.name} ?: '--'"></td>
+													<td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+													<td th:text="${product.description} ?: 'No description'"></td>
+													<td class="center"><a
+														th:href="@{/admin/products/edit(id=${product.id})}"> <i
+															class="fa fa-edit" id="icon_xanh"></i>
+													</a></td>
+													<td class="center"><a
+														th:href="@{/admin/products/delete(id=${product.id})}"
+														class="verify_action"> <i class="fa fa-trash-o"
+															id="icon_red"> </i>
+													</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>

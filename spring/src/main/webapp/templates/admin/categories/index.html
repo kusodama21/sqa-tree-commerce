@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+	<script th:src = "@{/static/admin/js/categories/index.js}" type = "text/javascript" defer></script>
+</head>
+<body>
+    <section layout:fragment = "content">
+		<div class="right_col" role="main" style="min-height: 656px;">
+		    <div class="">
+		        <div class="page-title">
+		            <div class="title_left">
+		                <h3>Categories</h3>
+		            </div>
+		            <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+		                <a th:href = "@{/admin/categories/add}" class="btn btn-round btn-primary" style="float: right;">Add New </a>
+		            </div>
+		        </div>
+		        <div class="clearfix"></div>
+		        <div class="row">
+		            <div class="col-md-12 col-sm-12 col-xs-12">
+		                <div class="x_panel">
+		                    <div class="x_title">
+		                        <h2 th:inlne = "text">Message: [[${msg} ?: 'No actions being comitted']]</h2>
+		                        <div class="clearfix"></div>
+		                    </div>
+		                    <div class="x_content">
+		                        <div class="row">
+		                            <div class="col-sm-12">
+		                                <table class="table table-bordered">
+		                                    <thead>
+		                                        <tr>
+		                                            <th>ID</th>
+		                                            <th>Name</th>
+		                                            <th>Edit</th>
+		                                            <th>Delete</th>
+		                                        </tr>
+		                                    </thead>
+		                                    <tbody>
+		                                        <tr th:each = "category : ${categories}">
+		                                            <td class="center" th:text = "${category.id}"></td>
+		                                            <td th:text = "${category.name}"></td>
+		                                            <td class="center">
+		                                                <a th:href = "@{/admin/categories/edit(id=${category.id})}">
+		                                                <i class="fa fa-edit" style="font-size: 20px; color: #4caf50;">
+		                                                </i>
+		                                                </a>
+		                                            </td>
+		                                            <td class="center">
+		                                                <form method = "POST" th:action = "@{/admin/categories/delete(id=${category.id})}">
+		                                                	<a type = "submit" href="javascript:{}" class="verify_action linkWrappedByForm">
+		                                                        <i class="fa fa-trash-o" style="font-size: 20px; color: red;">
+		                                                        </i>
+		                                                        <p></p>
+		                                                    </a>
+		                                                </form>
+		                                            </td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+    </section>
+</body>

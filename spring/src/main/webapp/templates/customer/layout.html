@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div layout:replace = "~{customer/fragments/head :: head}"></div>
+</head>
+<body class="home blog header-image content-sidebar">
+	<div id = "wrap">
+		<!-- Header -->
+		<section layout:replace = "~{customer/fragments/header :: header}"></section>
+		
+		<!-- Inner (Content + Sidebar) -->
+		<div id = "inner">
+			<div id = "content-sidebar-wrap">
+				<div id = "content" class = "hfeed" layout:fragment = "content">
+				</div>
+				<div id = "sidebar" class = "sidebar widget-area">
+					<section layout:replace = "~{customer/fragments/sidebar :: sidebar}"></section>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

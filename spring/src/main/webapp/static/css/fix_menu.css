@@ -1,0 +1,76 @@
+.img_QC {
+    margin-left: 17px;
+    margin: auto;
+}
+
+.menus {
+    float: left;
+    background: #5ba503;
+    margin-top: 6px;
+    width: 100%;
+    height: 40px;
+}
+
+.menus a li {
+    float: left;
+    list-style-type: none;
+    margin-left: 50px;
+    margin-top: 13px;
+    color: #FFFFFF;
+    font-style: 16px;
+    font-weight: bold;
+}
+
+.level-1 {
+    padding-left: 20%;
+}
+
+.register_title {
+    margin: auto;
+    text-align: center;
+    color: #5ba503;
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
+}
+
+.register {
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+}
+
+.labelx {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 50px;
+}
+
+.labels {
+    width: 32%;
+    float: left;
+}
+
+.inputs {
+    width: 70%;
+}
+
+#sub {
+    padding-left: 30%;
+}
+
+.warning {
+    padding: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    text-align: center;
+    color: #228624;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+	<script type = "text/javascript" th:src = "@{/static/js/submitParent.js}" defer></script>
+</head>
+<body>
+	<section layout:fragment="content"
+		th:with="product = ${productIndex.product}, category = ${productIndex.category}">
+		
+			<div class="breadcrumb">
+                <div class="wrap">
+                	<a href="@{/home}">Trang Chủ</a>
+                	<span class="label">  »  </span>
+                	<a th:href="@{/shop/category(id=${category.id})}" th:text = ${category.name}></a>
+                	<span class="label">  »  </span>
+                	<span th:text = ${product.name}></span>
+                </div>
+            </div>
+		
+			<div id = "inner">
+				<div id = "content-sidebar-wrap">
+					<div id="content" class="hfeed">
+						<div class="infor">
+						
+							<div class="left-info">
+								<div class="connected-carousels">
+									<div class="stage">
+										<div class="carousel carousel-stage" data-jcarousel="true">
+											<ul style="left: 0px; top: 0px;">
+												<li><a
+													th:href="@{/static/images/products/{img}(img=${product.image})}"
+													data-rel="lightbox-0" title="">
+														<p class="item"
+															th:style="'background:url('+@{/static/images/products/{img}(img=${product.image})}+'); no-repeat center center;'"></p>
+												</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+							<div class="right-info">
+								<h1 class="title-product" th:text=${product.name}>Foxglove</h1>
+								<div id="post-ratings-193659-loading"
+									class="post-ratings-loading">
+									<img th:src="@{/static/images/loading.gif}" width="16" height="16"
+										class="post-ratings-image">Loading...
+								</div>
+								<div class="addthis_native_toolbox"></div>
+								<div class="chitietsp">
+									<p class="tinhtrang">
+										Category : <span th:text=${category.name}></span>
+									</p>
+									<br>
+								</div>
+								<div class="chitietsp">
+									<p class="tinhtrang">
+										Amount: <span>45</span>
+									</p>
+									<br>
+								</div>
+	
+								<div class="show-gia">
+									<span class="price"> <span style="margin: 0px;"
+										th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+									</span>
+									<p></p>
+								</div>
+	
+								<div id="buy-product1" class="buy-product1">
+									<form method="post" th:action="@{/cart/add(productId=${product.id})}">
+										<a class="addtocart linkWrappedByForm" title="Add cart" href="javascript:{}" rel="193659">Add Cart</a>
+        							</form>
+									 
+									<a class="mngay" title="Mua ngay" th:href="@{/cart/index}">View Cart</a>
+								</div>
+							</div>
+						
+						</div>
+						
+						<h2 class="mota">Product Description</h2>
+						<div class="ndmota">
+                            <p th:text = "${product.description}">
+                        </div>
+						
+					</div>
+				</div>
+			</div>
+			
+	</section>
+</body>

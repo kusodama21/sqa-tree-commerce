@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+</head>
+<body>
+	<div layout:fragment = "content" th:with = "product = ${holder.central}, category = ${holder.category}">
+		<div class="infor">
+	        <div class="left-info">
+	            <div class="connected-carousels">
+	                <div class="stage">
+	                    <div class="carousel carousel-stage" data-jcarousel="true">
+	                        <ul style="left: 0px; top: 0px;">
+	                            <li>
+	                                <a th:href = "@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}" 
+	                                    data-rel="lightbox-0" th:title = "${product.name}">
+	                                    <p class="item" 
+	                                        th:style="'background:url('+@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}+'); no-repeat center center;'"></p>
+	                                </a>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="right-info">
+	            <h1 class="title-product" th:text = "${product.name}"></h1>
+	            <div class="chitietsp">
+	                <p class="tinhtrang">Category : 
+	                    <a th:if = "${category}" th:text = "${category.name}" th:href = "@{/shop/categories/show(id=${category.id})}"></a>
+	                    <span th:unless = "${category}">Not available</span>
+	                </p>
+	                <br>
+	            </div>
+	            <div class="show-gia">
+	                <span class="price">
+	                    <span style="margin: 0px;" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+	                </span>
+	                <p></p>
+	            </div>
+	            <div id="buy-product1" class="buy-product1">
+	                <a class="addtocart" title="Add cart" th:href = "@{/customer/cart/add(productId=${product.id})}" rel="193659">Add Cart</a>
+	                <a class="mngay" title="Mua ngay" th:href = "@{/customer/cart/index}">View Cart</a>
+	            </div>
+	        </div>
+		</div>
+	    <h2 class="mota">Product Description</h2>
+	    <div class="ndmota">
+	    	<p th:text = "${product.description} ?: 'No description inserted'"></p>
+	    </div>
+	</div>
+</body>

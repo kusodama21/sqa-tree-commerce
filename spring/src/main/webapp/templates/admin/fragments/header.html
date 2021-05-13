@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<section layout:fragment="header" th:remove="tag">
+		<div class="top_nav">
+			<div class="nav_menu">
+				<nav>
+					<div class="nav toggle">
+						<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<li class=""><a href="javascript:;"
+							class="user-profile dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false"> 
+								<img th:src="@{/static/images/admin/default-avatar.png}" alt="">Super admin 
+								<span class=" fa fa-angle-down"></span>
+							</a>
+						</li>
+						<li>
+							<button>
+								<a th:href="@{/account/logout}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+							</button>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</section>
+</body>

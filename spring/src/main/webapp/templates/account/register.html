@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Beauty Bonsai</title>
+</head>
+<body>
+	<h1>Register Form</h1>
+	<div th:if = "${msg}">
+		<h3>ERROR: [[${msg}]]</h3>
+	</div>
+	<form th:action = @{/account/register} method = 'POST' th:object = "${form}">
+		<div>
+			<label for = "username">Username: </label>
+			<input type = "text" id = "username" name = "username" th:value = "${form.username} ?: ''"  required> <br>
+			<ul>
+				<li>The username must be between 4 and 20-character long.</li>
+				<li>The username contains English alphabet characters (both cases) and numbers.</li>
+				<li>The username's beginning must be an English alphabet character.</li>
+				<li>The username should be unique to one account.</li>
+			</ul> <br>
+		</div>
+		<div>
+			<label for = "password">Password: </label>
+			<input type = "password" id = "password" name = "password" required> <br>
+			<ul>
+				<li>The password must be between 6 and 20-character long.</li>
+				<li>The password contain only English alphabet characters (both cases) and numbers.</li>
+				<li>The password contain at least one lowercase, one uppercase character, one number.</li>
+			</ul> <br>
+		</div>
+		<div>
+			<label for = "fullname">Full Name: </label>
+			<input type = "text" id = "fullname" name = "fullname" th:value = "${form.fullname} ?: ''" required> <br>
+			<ul>
+				<li>The full name must be 50-character long maximum.</li>
+			</ul> <br>
+		</div>
+		<div>
+			<label for = "address">Address: </label>
+			<input type = "text" id = "address" name = "address" th:value = "${form.address} ?: ''" required> <br>
+		</div>
+		<input type = "submit" value = "Register">
+	</form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+    <section layout:fragment = "content">
+        <div class="right_col" role="main" style="min-height: 656px;">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Add new category</h3>
+                    </div>
+        
+                    <!-- Mục A: Hướng đến liệt kê danh mục, chỉnh sửa href(#1) -->
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+                        <a th:href = "@{/admin/categories/index}" class="btn btn-round btn-success" style="float: right;">List All Categories</a>
+                    </div>
+                    <!-- Kết thúc Mục A -->
+        
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+        
+                            <!-- Mục B: Hiển thị thông báo lỗi, chỉnh sửa h2 trong div, sử dụng inline -->
+                            <div class="x_title">
+                                <h2 th:inline = "text">Message: [[${msg} ?: 'No action being comitted']]</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!-- Kết thúc mục B -->
+        
+                            <div class="x_content">
+                                <div class="col-xs-12">
+        
+                                    <!-- Mục C: Chỉnh sửa form -->
+                                    <form method = "POST" th:action = "@{/admin/categories/add}" th:object = "${form}">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label for="name" class="formLeft magin-left-30">Name :<span class="req">(*)</span></label>
+                                                    </td>
+                                                    <td>
+                                                        <input type = "text" name = "name" id = "name"
+                                                        	th:value = "${form.name} ?: ''" 
+                                                        	class="form-control col-md-7 col-xs-12" 
+                                                        	placeholder="Category Name" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-info ">Add New</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- Kết thúc mục C -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

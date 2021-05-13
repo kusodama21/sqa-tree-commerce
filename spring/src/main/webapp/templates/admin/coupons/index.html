@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+	<section layout:fragment = "content" th:remove = "tag">
+		<div class="right_col" role="main" style="min-height: 656px;">
+		    <div class="">
+		        <div class="page-title">
+		            <div class="title_left">
+		                <h3>List Coupon</h3>
+		            </div>
+		            <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+		                <a th:href = "@{/admin/coupons/add}" class="btn btn-round btn-primary" style="float: right;">Add Coupon </a>
+		            </div>
+		        </div>
+		        <div class="clearfix"></div>
+		        <div class="row">
+		            <div class="col-md-12 col-sm-12 col-xs-12">
+		                <div class="x_panel">
+		                    <div class="x_title">
+		                        <h2 th:inline = "text">Message: [[${msg} ?: 'No actions being comitted']]</h2>
+		                        <div class="clearfix"></div>
+		                    </div>
+		                    <div class="x_content">
+		                        <div class="row">
+		                            <div class="col-sm-12">
+		                                <form method="get" action="" class="list_filter form">
+		                                    <table class="table table-bordered">
+		                                        <thead>
+		                                            <tr>
+		                                                <th>Code</th>
+		                                                <th>Effect</th>
+		                                                <th>Delete</th>
+		                                            </tr>
+		                                        </thead>
+		                                        <tbody>
+		                                            <tr th:each = "coupon : ${coupons}">
+		                                                <td class="center" th:text = "${coupon.code}"></td>
+		                                                <td class="center" th:inline = "text">[[${coupon.effect}]]%</td>
+		                                                <td class="center">
+		                                                    <a th:href = "@{/admin/coupons/delete(code=${coupon.code})}" class="verify_action">
+		                                                    <i class="fa fa-trash-o" id="icon_red">
+		                                                    </i>
+		                                                    </a>
+		                                                </td>
+		                                            </tr>
+		                                        </tbody>
+		                                    </table>
+		                                </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</section>
+</body>

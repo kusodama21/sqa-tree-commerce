@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head layout:fragment = "head" th:remove = "tag">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<title>SQA Garden / Admin</title>
+	
+	<!-- Mục CSS: Thật sự là thẳng cha nào phục trách cái phần css này nên đi chết cmn đi, phân thế này bố ai biết chỗ nào mà include -->
+	<!-- Bootstrap -->
+    <link th:href = "@{/static/admin/common/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href = "@{/static/admin/common/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href = "@{/static/admin/common/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link th:href = "@{/static/admin/common/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link th:href= "@{/static/admin/common/custom/css/custom.css}" rel="stylesheet">
+	<!-- Select 2 -->
+    <link th:href = "@{/static/admin/common/select2/css/select2.css}" rel="stylesheet">
+    <!-- Style - Self defined? -->
+    <link th:href = "@{/static/admin/common/style/style.css}" rel="stylesheet">
+</head>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Beauty Bonsai</title>
+</head>
+<body>
+	<h1>Login Form</h1>
+	<h3 th:if = "${msg}" th:text = "${'Error: ' + msg}"></h3>
+	<form method = "POST" th:action = "@{/account/login}" th:object = "${form}">
+		<label for = "username">Username: </label>
+		<input type = "text" name = "username" id = "username" th:value = "${form.username}?:''" required>
+		<Label for = "password">Password: </Label>
+		<input type = "password" name = "password" id = "password" required>
+		<input type = "submit" value = "Login">
+	</form>
+</body>

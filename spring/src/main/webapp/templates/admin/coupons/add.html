@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+    <section layout:fragment = "content">
+        <div class="right_col" role="main" style="min-height: 656px;">
+            <div class="">
+               <div class="page-title">
+                  <div class="title_left">
+                     <h3>Add New Coupon</h3>
+                  </div>
+                  <div class="title_right">
+                     <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right ">
+                        <a th:href = "@{/admin/coupons/index}" class="btn btn-round btn-success" style="float: right;">List All Coupons </a>
+                     </div>
+                  </div>
+               </div>
+               <div class="clearfix"></div>
+               <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                     <div class="x_panel">
+                        <div class="x_title">
+                           <h2 th:inline = "text">Message: [[${msg} ?: 'No actions being committed']]</h2>
+                           <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                           <div class="col-xs-12">
+                              <form method = "POST" th:action = "@{/admin/coupons/add}" th:object = "${form}">
+                                 <table class="table">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <label for="code" class="formLeft magin-left-30">Code:<span class="req">(*)</span></label>
+                                          </td>
+                                          <td>
+                                             <input type="text" name="code" id="code" class="form-control" placeholder="Coupon Code"
+                                             	th:value = "${form.code} ?: ''" required>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <label for="effect" class="formLeft magin-left-30">Effect:<span class="req">(*)</span></label>
+                                          </td>
+                                          <td>
+                                             <input type="number" name="effect" id="effect" class="form-control" placeholder="Coupon Effect"
+                                             	th:min = "${couponEffectMinValue}" 
+                                             	th:max = "${couponEffectMaxValue}" 
+                                             	th:step = "${couponEffectStepValue}" 
+                                             	th:value = "${form.effect} ?: ''" required>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                          </td>
+                                          <td>
+                                             <button type="submit" class="btn btn-info ">Add New</button>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </section>
+</body>

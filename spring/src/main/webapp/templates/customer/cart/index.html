@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{customer/layout}">
+<head>
+	<script th:src = "@{/static/customer/js/cart/index.js}" type = "text/javascript" defer></script>
+</head>
+<body>
+	<div layout:fragment = "content">
+		<div class="post-8939 page type-page status-publish hentry entry">
+		    <h1 class="entry-title" th:inline = "text">Your Cart: [[${msg} ?: 'No actions being comitted']]</h1>
+		    <div class="entry-content">
+		        <form th:action = "@{/customer/cart/update}" method="post" id="shop-cart-form" th:object = "${form}">
+		        	<input type = "hidden" name = "updateInfo" id = "updateInfo">
+		            <table id="gsc-shopcart-table" width="100%" border="1" class="shop-cart-table" cellspacing="0" cellpadding="5">
+		                <thead class="tr-heading">
+		                    <tr>
+		                        <th>ID</th>
+		                        <th>Image</th>
+		                        <th>Name</th>
+		                        <th>Category</th>
+		                        <th>Amount</th>
+		                        <th>Price</th>
+		                        <th>Total Money</th>
+		                        <th>Delete</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr th:each = "holder : ${cartHolder.cartItemHolders}" 
+		                        th:with = "item = ${holder.central}, product = ${holder.productHolder.central}, category = ${holder.productHolder.category}">
+		                        
+		                        <td align="center" th:text = "${product.id}"></td>
+		                        <td width="">
+		                            <img width="100" height="100" th:src = "@{/static/images/products/{img}(img=(${product.image}?:'placeholder.jpg'))}" class="attachment-thumbnail">
+		                        </td>
+		                        <td>
+		                            <span class="product-name">
+		                                <a th:href = "@{/shop/products/show(id=${product.id})}" 
+		                                    th:title = "${product.name}" th:text = "${product.name}"></a>
+		                            </span><br>
+		                        </td>
+		                        <td>
+		                        	<div th:unless = "${category}">
+		                        		<p style = "display: inline;">--</p>
+		                        		<br>
+		                        	</div>
+		                        	<div th:if = "${category}">
+			                        	<span class="category-name">
+			                                <a th:href = "@{/shop/categories/show(id=${category.id})}" 
+			                                    th:title = "${category.name}" th:text = "${category.name}"></a>
+			                            </span><br>
+		                        	</div>
+		                        </td>
+		                        <td align="center" >
+		                            <span class="row-price">
+		                            <input type="number" class = "item" th:value = "${item.quantity}" th:data-productid = "${product.id}"
+		                                style="width: 50px;height: 25px;text-align: center;" min="1" max = "2000" required>
+		                            </span>
+		                        </td>
+		                        <td align="center">
+		                            <span class="row-price" th:text = "${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                        </td>
+		                        <td align="center">
+		                            <span class="row-price" th:text = "${#numbers.formatDecimal(holder.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                        </td>
+		                        <td align="center">
+		                            <a th:href = "@{/customer/cart/delete(productId=${product.id})}" class="remove-product" data-id="193725">Delete</a>
+		                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		            <div class="cart-summary">
+		                <div class="cart-total">
+		                    <p class="org-price">
+		                        <span> Original Price: [[${#numbers.formatDecimal(cartHolder.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}]] </span>
+		                    </p>
+		                    <label for = "couponCode">Coupon: </label>
+		                    <input type = "text" name = "couponCode" id = "couponCode" maxlength = "6" th:value = "${cartHolder.coupon?.code} ?: ''"></input>
+		                    <p class="sale-percentage">
+		                        <span class="#">Sale: </span>
+		                        <span class="#"> [[${cartHolder.coupon?.effect} ?: '0']]% </span>
+		                    </p>
+		                    <p class="total-price">
+		                        <span class="total-price">Total value: </span>
+		                        <span class="total-pricce" th:text = "${#numbers.formatDecimal(cartHolder.finalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></span>
+		                    </p>
+		                    <a class="button checkout" th:href = "@{/customer/orders/convert}" title="Order">Order</a>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="gsc-action">
+		                    <a id = "submit-link" class="continue-shopping" href="javascript:{}" title="update-cart">Update</a>
+		                </div>
+		                <div class="clear"></div>
+		            </div>
+		        </form>
+		    </div>
+		</div>
+	</div>
+</body>

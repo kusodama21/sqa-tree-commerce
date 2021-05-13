@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout}">
+<head>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="right_col" role="main" style="min-height: 656px;">
+		    <div class="">
+		        <div class="page-title" id="load">
+		            <div class="title_left">
+		                <h3>Order List Management</h3>
+		            </div>
+		        </div>
+		        <div class="clearfix"></div>
+		        <div class="row">
+		            <div class="col-md-12 col-sm-12 col-xs-12">
+		                <div class="x_panel">
+		                    <div class="x_title">
+		                        <h2 th:inline = "text">Message: [[${msg} ?: 'No actions being comitted']]</h2>
+		                        <div class="clearfix"></div>
+		                    </div>
+		                    <div class="x_content">
+		                        <div class="row">
+		                            <div class="col-sm-12">
+		                                <form method="get" action="" class="list_filter form">
+		                                    <table class="table table-bordered">
+		                                        <thead>
+		                                            <tr>
+		                                                <th>Id</th>
+		                                                <th>Username</th>
+		                                                <th>Coupon</th>
+		                                                <th>No. Products</th>
+		                                                <th>Total Price</th>
+		                                                <th>Final Price</th>
+		                                                <th>State</th>
+		                                                <th>Action</th>
+		                                                <th>Details</th>
+		                                            </tr>
+		                                        </thead>
+		                                        <tbody>
+		                                            <tr th:each = "holder : ${orderHolders}" th:with = "order = ${holder.central}, account = ${holder.account}, coupon = ${holder.coupon}">
+		                                                <td class="center" th:text = "${order.id}"></td>
+		                                                <td th:text = "${account?.username} ?: '--'"></td>
+		                                                <td th:text = "${coupon?.code} ?: '--'"></td>
+		                                                <td th:text = "${holder.orderLineHolders.size()}"></td>
+		                                                <td th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+		                                                <td th:text="${#numbers.formatDecimal(order.finalPrice, 0, 'COMMA', 0, 'POINT') + ' VNĐ'}"></td>
+		                                                <td>
+		                                                	<div th:if = "${order.state.isPresent() == false}">
+		                                                		<p>Pending</p>
+		                                                	</div>
+		                                                	<div th:unless = "${order.state.isPresent() == false}">
+		                                                		<p th:if = "${order.state.get() == false}">Rejected</p>
+		                                                		<p th:if = "${order.state.get() == true}">Accepted</p>
+		                                                	</div>
+		                                                </td>
+		                                                <td class="center actions">
+		                                                    <div class="product-checking" th:if = "${order.state.isPresent() == false}">
+		                                                        <a th:href = "@{/admin/orders/change(id=${order.id},state=true)}">
+		                                                        <button id="accept-btn" type="button"> Accept </button>
+		                                                        </a>
+		                                                        <a th:href = "@{/admin/orders/change(id=${order.id},state=false)}">
+		                                                        <button id="reject-btn" type="button"> Reject </button>
+		                                                        </a>
+		                                                    </div>
+		                                                    <div class="delete-btn" th:unless = "${order.state.isPresent() == false}">
+		                                                        <a th:href = "@{/admin/orders/delete(id=${order.id})}" class="verify_action">
+		                                                        <i class="fa fa-trash-o" id="icon_red"></i>
+		                                                        </a>
+		                                                    </div>
+		                                                </td>
+		                                                <td class = "center">
+		                                                	<a th:href = "@{/admin/orders/show(id=${order.id})}">View Details</a>
+		                                                </td>
+		                                            </tr>
+		                                        </tbody>
+		                                    </table>
+		                                </form>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</section>
+</body>
