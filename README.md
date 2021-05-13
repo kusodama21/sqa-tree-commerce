@@ -12,3 +12,4 @@ The database used is MySQL and stored in badshop.sql.
 	Password: admin
 
 The uploading image feature is not yet included, so all images uploaded will be deleted as Heroku's system is ephemeral.
+Access: http://flowers-spring.herokuapp.com/home
